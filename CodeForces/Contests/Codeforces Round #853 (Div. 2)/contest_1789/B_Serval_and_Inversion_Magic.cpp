@@ -17,34 +17,42 @@ int gcd(int a, int b)
 
 void solve()
 {
-  int n, num;
-  string s;
-  cin >> n >> s;
-  vector<int> h1, h2;
+  int n;
+  cin >> n;
+  stack<char> h1;
+  queue<char> h2;
   int i;
+  char c;
   for (i = 0; i < n / 2; i++)
-    h1.push_back(s[i] - '0');
+  {
+    cin >> c;
+    h1.push(c);
+  }
   if (n & 1)
-    i++;
-  for (; i < n; i++)
-    h2.push_back(s[i] - '0');
-  int consc_diff = 0;
+    cin >> c;
+  for (i = 0; i < n / 2; i++)
+  {
+    cin >> c;
+    h2.push(c);
+  }
+  char consc_diff = 0;
   bool first = true;
-  reverse(h2.begin(), h2.end());
-  
-  for (int i = 0; i < h1.size(); i++)
-    if (h1[i] != h2[i])
-    {
+
+  for (int i = 0; i < n / 2; i++)
+  {
+    if (h1.top() != h2.front())
       if (first)
-        consc_diff++;
+        consc_diff = 1;
       else
       {
         cout << "No" << endl;
         return;
       }
-    }
     else if (consc_diff)
       first = false;
+    h1.pop();
+    h2.pop();
+  }
   cout << "Yes" << endl;
 }
 
