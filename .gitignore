@@ -1,3 +1,4 @@
 .catalyst
 .temp
 .vscode
+*.exe
