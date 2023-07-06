@@ -8,30 +8,35 @@ using namespace std;
   cin.tie(0);                   \
   cout.tie(0);
 #define all(x) (x).begin(), (x).end()
-int DFS(int u, int consec, int limit, vector<vector<int>>& g, vector<int>& cat, vector<bool>& vis, int count)
+vector<vector<int>> g;
+vector<int> cat;
+vector<bool> visited;
+int cnt = 0;
+void DFS(int u, int consec, int limit)
 {
-  vis[u] = true;
+  visited[u] = true;
   consec += (cat[u]) ? 1 : -consec;
   if (limit < consec)
-    return count;
+    return;
   bool leaf = true;
   for (auto v : g[u])
   {
-    if (!vis[v])
+    if (!visited[v])
     {
-      count = DFS(v, consec, limit, g, cat, vis, count);
+      DFS(v, consec, limit);
       leaf = false;
     }
   }
-  return count + leaf;
+  cnt += leaf;
 }
 void solve()
 {
   int n, m;
   cin >> n >> m;
-  vector<vector<int>> g (n);
-  vector<int> cat (n);
-  vector<bool> visited (n, false);
+  g.resize(n);
+  cat.resize(n);
+  visited.resize(n);
+  fill(all(visited), false);
   for (auto& x : cat)
     cin >> x;
   for (int i = 0; i < n - 1; i++)
@@ -41,7 +46,8 @@ void solve()
     g[--u].push_back(--v);
     g[v].push_back(u);
   }
-  cout << DFS(0, 0, m, g, cat, visited, 0);
+  DFS(0, 0, m);
+  cout << cnt;
 }
 
 int main()
