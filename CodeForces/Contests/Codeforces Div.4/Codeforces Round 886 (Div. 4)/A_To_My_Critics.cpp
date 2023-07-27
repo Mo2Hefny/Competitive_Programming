@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
-
+ 
 using namespace std;
-
+ 
 #define ll long long
 #define fast                    \
   ios_base::sync_with_stdio(0); \
@@ -9,20 +9,23 @@ using namespace std;
   cout.tie(0);
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
-
+ 
 int dx[4] = {1, -1, 0, 0};
 int dy[4] = {0, 0, 1, -1};
-
+ 
 void solve()
 {
-  
+  int a , b , c;
+  cin >> a >> b >> c;
+  if (a + b >= 10 || b + c >= 10 || a + c >= 10)  cout << "YES\n";
+  else cout << "NO\n";  
 }
-
+ 
 int main()
 {
-  //int t;
-  //cin >> t;
-  //while(t--)
+  int t;
+  cin >> t;
+  while(t--)
   solve();
   return 0;
 }
