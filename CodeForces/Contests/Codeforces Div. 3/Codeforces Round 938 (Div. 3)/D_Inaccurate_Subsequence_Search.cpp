@@ -30,12 +30,12 @@ void solve()
   while (l <= n - m) {
     while (r - l < m && r < n) {
       occ[a[r]]++;
-      if (b[a[r]] && b[a[r]] == occ[a[r]]) cnt++;
+      if (b[a[r]] && b[a[r]] >= occ[a[r]]) cnt++;
       r++;
     }
-    if (cnt >= k) res++;
+    if (cnt >= k && r - l == m) res++;
     occ[a[l]]--;
-    if (b[a[l]] && b[a[l]] == occ[a[l]] + 1) cnt--;
+    if (b[a[l]] && b[a[l]] > occ[a[l]]) cnt--;
     l++;
   }
   cout << res << endl;
